@@ -1,0 +1,100 @@
+{
+  "emails": [
+    {
+      "sender_name": "이벤트팀",
+      "sender_email": "promo@spam123.com",
+      "subject": "[축하] 당신이 당첨되었습니다!",
+      "body": "축하합니다! 100만원 상금에 당첨되셨습니다. 지금 바로 아래 링크를 클릭하세요. 기회를 놓치지 마세요! http://bit.ly/win-now",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 09:00:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bffb1",
+      "msg_id": "19e6ad2ba502bffb1"
+    },
+    {
+      "sender_name": "쇼핑특가",
+      "sender_email": "sale@unknown-shop.com",
+      "subject": "오늘만 무료배송! 놓치면 후회하는 특가",
+      "body": "안녕하세요 고객님. 오늘 하루만 전 상품 무료배송 이벤트를 진행합니다. 지금 바로 구매하시면 추가 할인 쿠폰도 드립니다. 수신거부는 여기를 클릭하세요.",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 08:00:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb2",
+      "msg_id": "19e6ad2ba502bfb2"
+    },
+    {
+      "sender_name": "GitHub",
+      "sender_email": "noreply@github.com",
+      "subject": "[GitHub] Pull request #142 merged",
+      "body": "이용자님, pull request #142 'Fix login bug'가 main 브랜치에 성공적으로 merge되었습니다. 추가 조치는 필요하지 않습니다.",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 07:30:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb3",
+      "msg_id": "19e6ad2ba502bfb3"
+    },
+    {
+      "sender_name": "테크 뉴스레터",
+      "sender_email": "weekly@technews.com",
+      "subject": "이번 주 개발자 소식 5가지",
+      "body": "안녕하세요! 이번 주 주요 기술 뉴스를 정리했습니다. 1. 파이썬 3.14 출시 2. AI 에이전트 트렌드 ... 즐거운 한 주 되세요. (읽기 전용 소식지)",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 07:00:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb4",
+      "msg_id": "19e6ad2ba502bfb4"
+    },
+    {
+      "sender_name": "김교수",
+      "sender_email": "prof.kim@pcu.ac.kr",
+      "subject": "졸업 프로젝트 면담 일정 조율",
+      "body": "고승범 학생, 졸업 프로젝트 진행 상황을 논의하고 싶습니다. 6월 2일 화요일 오후 2시에 연구실에서 면담 가능한가요? 어려우면 가능한 시간을 알려주세요.",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 10:15:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb5",
+      "msg_id": "19e6ad2ba502bfb5"
+    },
+    {
+      "sender_name": "이수민",
+      "sender_email": "sumin.lee@company.com",
+      "subject": "[회의] 6월 3일 오전 10시 프로젝트 킥오프",
+      "body": "안녕하세요 고승범님, 6월 3일 수요일 오전 10시에 프로젝트 킥오프 회의를 진행하려 합니다. 참석 가능 여부 회신 부탁드립니다. 장소는 3층 회의실입니다.",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 11:00:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb6",
+      "msg_id": "19e6ad2ba502bfb6"
+    },
+    {
+      "sender_name": "박지훈",
+      "sender_email": "jihoon.park@partner.com",
+      "subject": "자료 잘 받았습니다",
+      "body": "고승범님, 어제 보내주신 발표 자료 잘 받았습니다. 큰 도움이 되었어요. 감사합니다!",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 12:30:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb7",
+      "msg_id": "19e6ad2ba502bfb7"
+    },
+    {
+      "sender_name": "정민지",
+      "sender_email": "minji.jung@vendor.com",
+      "subject": "[승인 요청] 연간 라이선스 계약 갱신 건",
+      "body": "고승범님, 연간 소프트웨어 라이선스 계약 갱신 비용이 작년 대비 15% 인상되었습니다. 총 480만원입니다. 갱신을 진행할지 결정해 주시면 계약서를 보내드리겠습니다.",
+      "to": "me@gmail.com",
+      "cc": [],
+      "date": "Thu, 28 May 2026 13:45:00 +0900",
+      "is_read": false,
+      "thread_id": "19e6ad2ba502bfb8",
+      "msg_id": "19e6ad2ba502bfb8"
+    }
+  ]
+}

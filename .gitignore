@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# 환경변수 (민감 정보)
+.env
+
+# Gmail API 연동 시 자격증명 (선택적 확장)
+credentials.json
+token.json
+
+# 테스트 출력 로그
+smoke_result.txt
+
+# 런타임에 쌓이는 메일 데이터 (샘플 inbox.json/inbox2.json은 올림)
+data/sent.json
+data/spam_db.json
+data/schedule.json
+
+# 멀티 계정/AI 설정 (API 키 평문 저장 → 절대 커밋 금지)
+data/accounts.json

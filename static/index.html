@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mail Agent · 관리자 콘솔</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-text">
+          <div class="brand-name">Mail Agent</div>
+        </div>
+      </div>
+
+      <nav class="tabs" id="nav">
+        <button class="tab active" data-view="dashboard">대시보드</button>
+        <button class="tab" data-view="sent">자동 답장</button>
+        <button class="tab" data-view="spam">스팸 DB</button>
+        <button class="tab" data-view="schedule">스케줄</button>
+      </nav>
+
+      <div class="top-actions">
+        <button class="btn btn-icon" id="themeBtn" title="테마 전환">다크 모드</button>
+        <button class="btn btn-soft" id="reportBtn">리포트</button>
+        <button class="btn btn-soft" id="settingsBtn">설정</button>
+        <button class="btn btn-primary" id="runBtn">병렬 처리 시작</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="stats">
+      <div class="card stat"><div class="stat-label">받은편지함</div><div class="stat-val" id="statInbox">0</div></div>
+      <div class="card stat"><div class="stat-label">스팸 DB</div><div class="stat-val" id="statSpam">0</div></div>
+      <div class="card stat"><div class="stat-label">자동 답장</div><div class="stat-val" id="statSent">0</div></div>
+      <div class="card stat"><div class="stat-label">스케줄</div><div class="stat-val" id="statSched">0</div></div>
+    </section>
+
+    <section class="progress-wrap" id="progressWrap" hidden>
+      <div class="progress-head">
+        <span id="progressText">처리 준비 중...</span>
+        <span id="progressPct" class="muted">0%</span>
+      </div>
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+    </section>
+
+    <section class="view active" id="view-dashboard">
+      <div class="dash-head">
+        <div>
+          <h2>분류 결과</h2>
+          <p class="muted" id="dashSub">상태별로 묶어 보여줍니다. 결정이 필요한 메일만 펼쳐서 처리하세요.</p>
+        </div>
+      </div>
+      <div class="filterbar" id="acctFilter"></div>
+      <div class="board" id="board"></div>
+    </section>
+
+    <section class="view" id="view-sent">
+      <div class="card">
+        <div class="card-head"><h2>자동 답장 (발신함)</h2></div>
+        <div id="sentList" class="list"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-spam">
+      <div class="card">
+        <div class="card-head"><h2>스팸 DB</h2></div>
+        <div id="spamSenders" class="chips"></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>발신자</th><th>제목</th><th>수신일</th></tr></thead>
+            <tbody id="spamRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-schedule">
+      <div class="sched-layout">
+        <div class="card sched-cal">
+          <div class="card-head">
+            <h2>일정 달력</h2>
+            <div class="cal-nav">
+              <button class="btn btn-soft" id="calPrev">이전 달</button>
+              <span id="calLabel" class="cal-label"></span>
+              <button class="btn btn-soft" id="calNext">다음 달</button>
+            </div>
+          </div>
+          <div class="calendar" id="calendar"></div>
+        </div>
+        <div class="card sched-detail">
+          <div class="card-head">
+            <h2 id="schedDetailTitle">전체 일정</h2>
+            <button class="btn btn-soft" id="schedAll" hidden>전체 보기</button>
+          </div>
+          <div id="schedDetail" class="sd-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="settingsModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <h2>설정</h2>
+        <button class="btn btn-soft" id="settingsClose">닫기</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted modal-intro">
+          유료 AI(OpenAI·Claude·Gemini)를 키와 함께 등록하면 등록 순서대로 우선 사용하고,
+          사용량 소진·오류로 실패하면 무료 로컬 Ollama로 자동 전환됩니다.
+          API 키는 이 컴퓨터에만 저장되며 화면에는 마스킹되어 표시됩니다.
+        </p>
+
+        <section class="cfg-section">
+          <h3>AI 제공자</h3>
+          <div id="aiList" class="cfg-list"></div>
+          <div class="cfg-form">
+            <div class="form-grid">
+              <label>이름<input id="ai_name" placeholder="예: 내 OpenAI" /></label>
+              <label>종류<select id="ai_provider"></select></label>
+              <label>모델<select id="ai_model"></select></label>
+              <label>API 키<input id="ai_key" type="password" placeholder="유료 키 입력" /></label>
+            </div>
+            <button class="btn btn-primary" id="aiAddBtn">AI 제공자 추가</button>
+          </div>
+        </section>
+
+        <section class="cfg-section">
+          <h3>메일 계정</h3>
+          <div id="mailList" class="cfg-list"></div>
+          <div class="cfg-form">
+            <div class="form-grid">
+              <label>이름<input id="mail_name" placeholder="예: 회사 메일" /></label>
+              <label>소스
+                <select id="mail_source">
+                  <option value="dummy">dummy (JSON)</option>
+                  <option value="gmail">gmail (실제 연동)</option>
+                </select>
+              </label>
+              <label id="lbl_mail_file">받은편지함 파일<input id="mail_file" placeholder="inbox.json" /></label>
+            </div>
+            <label id="lbl_mail_creds" class="full" hidden>
+              Gmail OAuth credentials JSON (구글 클라우드에서 받은 내용 붙여넣기)
+              <textarea id="mail_creds" rows="4" placeholder='{"installed":{"client_id":"...","client_secret":"...", ...}}'></textarea>
+            </label>
+            <p class="muted" id="gmail_hint" hidden>
+              추가 후 목록의 "연결" 버튼을 누르면 브라우저가 열려 동의(허용)를 진행합니다.
+              연결되면 처리 시작 시 안 읽은 메일을 모두 가져와 분류합니다.
+            </p>
+            <button class="btn btn-primary" id="mailAddBtn">메일 계정 추가</button>
+          </div>
+        </section>
+
+        <section class="cfg-section">
+          <h3>처리 옵션</h3>
+          <div class="opt-row">
+            <label class="opt-worker">병렬 워커 수
+              <span class="worker-ctl">
+                <input type="range" id="workers" min="1" max="8" value="4" />
+                <span id="workerVal" class="worker-val">4</span>
+              </span>
+            </label>
+            <button class="btn btn-soft" id="resetBtn">처리 결과 초기화</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="detailModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <h2 id="dt_title">메일 상세</h2>
+        <button class="btn btn-soft" id="detailClose">닫기</button>
+      </div>
+      <div class="modal-body" id="detailBody"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
